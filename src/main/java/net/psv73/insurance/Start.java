@@ -14,7 +14,9 @@ public class Start {
 
         Insurance insurance = new Insurance("Boris", Type.YEAR, LocalDate.now(), LocalDate.now().plusMonths(2), Plan.EXTENDED, Person.THREE, (float) 589.30);
 
-        InsuranceDAO.addInsurance(insurance);
+        for( int i = 0; i <= 100; i++ ) {
+            InsuranceDAO.addInsurance(insurance);
+        }
 
         System.out.println("Insurance: " + insurance);
     }
