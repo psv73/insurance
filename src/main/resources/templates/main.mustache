@@ -1,19 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-
-    <title>{{title}}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<!--    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />-->
-<!--    <link rel="stylesheet" href="css/main.css" />-->
-
-</head>
+{{>layout/header}}
 <!--  this is header -->
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Spring Boot</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
     <div>
         <form method="post">
-            <input type="text", name="text", placeholder="Input Name"/>
+            <input name="text" placeholder="Input Name" type="text"/>
             <button type="submit">Send</button>
         </form>
     </div>
@@ -30,5 +29,6 @@
         <b>{{payment}}</b>
     </div>
     {{/insurances}}
+</div>
 </body>
-</html>
+{{>layout/footer}}
