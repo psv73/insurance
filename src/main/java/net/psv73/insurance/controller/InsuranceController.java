@@ -3,14 +3,13 @@ package net.psv73.insurance.controller;
 import net.psv73.insurance.model.Insurance;
 import net.psv73.insurance.repository.InsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("insurance")
 public class InsuranceController {
 
@@ -21,23 +20,15 @@ public class InsuranceController {
     private InsuranceRepository insuranceRepository;
 
     @GetMapping()
-    public String main(Map<String, Object> model) {
+    public List<Insurance> main(Map<String, Object> model) {
 
-        List<Insurance> insurances = insuranceRepository.findAll();
-
-        model.put("insurances", insurances);
-
-        return "main";
+        return insuranceRepository.findAll();
     }
 
     @GetMapping("{id}")
-    public String getOne(@PathVariable String id, Map<String, Object> model) {
+    public Optional<Insurance> getOne(@PathVariable String id, Map<String, Object> model) {
 
-        Optional<Insurance> insurance = insuranceRepository.findById(Long.parseLong(id));
-
-        model.put("insurances", insurance);
-
-        return "main";
+        return insuranceRepository.findById(Long.parseLong(id));
     }
 
     @PostMapping
