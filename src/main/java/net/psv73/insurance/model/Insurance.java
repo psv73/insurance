@@ -12,7 +12,7 @@ public class Insurance {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private LocalDateTime dateStamp;
@@ -51,7 +51,11 @@ public class Insurance {
         this.payment = payment;
     }
 
-    public Long getId() {
+    public void setDateStamp(LocalDateTime dateStamp) {
+        this.dateStamp = dateStamp;
+    }
+
+    public Integer getId() {
         return id;
     }
 
