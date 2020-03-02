@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -72,5 +73,13 @@ public class InsuranceController {
         List<Insurance> insurances = (List<Insurance>) insuranceRepository.findAll();
 
         return insurances;
+    }
+
+    @GetMapping("new")
+    public Map<String, Object> newInsurance() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("innsurance", new Insurance());
+        data.put("type", Type.values());
+    return data;
     }
 }
