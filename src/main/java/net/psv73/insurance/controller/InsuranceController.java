@@ -80,7 +80,7 @@ public class InsuranceController {
     @GetMapping("new")
     public Map<String, Object> newInsurance() {
         Map<String, Object> data = new HashMap<>();
-        data.put("innsurance", new Insurance());
+        data.put("insurance", new Insurance());
         data.put("type", Type.values());
     return data;
 
