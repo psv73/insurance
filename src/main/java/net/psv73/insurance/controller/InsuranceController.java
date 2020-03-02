@@ -1,9 +1,6 @@
 package net.psv73.insurance.controller;
 
-import net.psv73.insurance.model.Insurance;
-import net.psv73.insurance.model.Person;
-import net.psv73.insurance.model.Plan;
-import net.psv73.insurance.model.Type;
+import net.psv73.insurance.model.*;
 import net.psv73.insurance.repository.InsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("insurance")
 public class InsuranceController {
-
-//    @Value("@(app.main.title)")
-//    private String title = "";
 
     @Autowired
     private InsuranceRepository insuranceRepository;
@@ -79,12 +73,19 @@ public class InsuranceController {
 
     @GetMapping("new")
     public Map<String, Object> newInsurance() {
+
         Map<String, Object> data = new HashMap<>();
+
         data.put("insurance", new Insurance());
+
         data.put("type", Type.values());
-    return data;
 
+        data.put("plan", Plan.values());
+
+        data.put("person", Person.values());
+
+        data.put("rate", new Rate());
+
+        return data;
     }
-
-
 }
