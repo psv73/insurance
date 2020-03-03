@@ -1,12 +1,15 @@
 package net.psv73.insurance.util;
 
+import net.psv73.insurance.model.*;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Utils {
-
 
     public static float getProperty(String key) {
 
@@ -31,5 +34,22 @@ public class Utils {
         property = Float.parseFloat(properties.getProperty(key));
 
         return property;
+    }
+
+    public static Map<String, Object> editData(Insurance insurance, Rate rate) {
+
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("insurance", insurance);
+
+        data.put("type", Type.values());
+
+        data.put("plan", Plan.values());
+
+        data.put("person", Person.values());
+
+        data.put("rate", rate);
+
+        return data;
     }
 }
