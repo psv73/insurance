@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode
 @Component
 @PropertySource("classpath:application.properties")
-@ConfigurationProperties(prefix = "app")
+@ConfigurationProperties
 public class Rate {
 
     @Getter
