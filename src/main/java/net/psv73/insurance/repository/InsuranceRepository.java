@@ -9,5 +9,4 @@ public interface InsuranceRepository extends CrudRepository<Insurance, Integer> 
 
     List<Insurance> findAll();
 
-    Insurance findById(int parseInteger);
 }

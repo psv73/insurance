@@ -3,6 +3,7 @@ package net.psv73.insurance.controller;
 import net.psv73.insurance.model.*;
 import net.psv73.insurance.repository.InsuranceRepository;
 import net.psv73.insurance.util.Utils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("insurance")
@@ -28,13 +30,13 @@ public class InsuranceController {
     }
 
     @GetMapping("{id}")
-    public Map<String, Object> getOne(@PathVariable String id, Map<String, Object> model) {
+    public Map<String, Object> getOne(@PathVariable("id") Insurance insurance) {
 
-        return Utils.editData(insuranceRepository.findById(Integer.parseInt(id)));
+        return Utils.editData(Optional.ofNullable(insurance));
     }
 
     @PostMapping
-    public Insurance addInsurance(@RequestBody Insurance insurance) {
+    public Insurance createInsurance(@RequestBody Insurance insurance) {
 
         insurance.setDateStamp(LocalDateTime.now());
         insuranceRepository.save(insurance);
@@ -42,21 +44,19 @@ public class InsuranceController {
         return insurance;
     }
 
-    @PutMapping
-    public Insurance updateInsurance(@RequestBody Insurance insurance) {
+    @PutMapping("{id}")
+    public Insurance updateInsurance(@PathVariable("id") Insurance insuranceFromDB, @RequestBody Insurance insurance) {
 
         insurance.setDateStamp(LocalDateTime.now());
-        insuranceRepository.save(insurance);
+        BeanUtils.copyProperties(insurance, insuranceFromDB, "id");
 
-        return insurance;
+        return insuranceRepository.save(insuranceFromDB);
     }
 
     @DeleteMapping("{id}")
-    public void deleteInsurance(@PathVariable String id) {
+    public void deleteInsurance(@PathVariable("id") Insurance insurance) {
 
-        insuranceRepository.deleteById(Integer.parseInt(id));
-
-        return;
+        insuranceRepository.delete(insurance) ;
     }
 
     /**
@@ -76,9 +76,4 @@ public class InsuranceController {
         return insurances;
     }
 
-    @GetMapping("new")
-    public Map<String, Object> newInsurance() {
-
-        return Utils.editData(new Insurance());
-    }
 }
