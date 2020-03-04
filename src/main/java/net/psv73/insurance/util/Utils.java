@@ -36,7 +36,7 @@ public class Utils {
         return property;
     }
 
-    public static Map<String, Object> editData(Insurance insurance, Rate rate) {
+    public static Map<String, Object> editData(Insurance insurance) {
 
         Map<String, Object> data = new HashMap<>();
 
@@ -48,8 +48,11 @@ public class Utils {
 
         data.put("person", Person.values());
 
-        data.put("rate", rate);
-
         return data;
+    }
+
+    public static Insurance calculateInsurance(Insurance insurance) {
+
+        return insurance;
     }
 }

@@ -30,7 +30,7 @@ public class InsuranceController {
     @GetMapping("{id}")
     public Map<String, Object> getOne(@PathVariable String id, Map<String, Object> model) {
 
-        return Utils.editData(insuranceRepository.findById(Integer.parseInt(id)), rate);
+        return Utils.editData(insuranceRepository.findById(Integer.parseInt(id)));
     }
 
     @PostMapping
@@ -79,6 +79,6 @@ public class InsuranceController {
     @GetMapping("new")
     public Map<String, Object> newInsurance() {
 
-        return Utils.editData(new Insurance(), rate);
+        return Utils.editData(new Insurance());
     }
 }
