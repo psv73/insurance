@@ -15,7 +15,7 @@ public class Utils {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("insurance", insurance);
+        data.put("insurances", insurance);
 
         data.put("type", Type.values());
 

@@ -5,8 +5,6 @@ import net.psv73.insurance.repository.InsuranceRepository;
 import net.psv73.insurance.util.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -15,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller
-@RequestMapping("insurance")
-public class InsuranceController {
+@RestController
+@RequestMapping("REST")
+public class InsuranceRESTController {
 
     @Autowired
     private InsuranceRepository insuranceRepository;
@@ -25,20 +23,16 @@ public class InsuranceController {
     @Autowired
     private Rate rate;
 
-    @GetMapping
-    public String main(Model model) {
+    @GetMapping()
+    public List<Insurance> main(Map<String, Object> model) {
 
-        model.addAttribute("insurances", insuranceRepository.findAll());
-
-        return "main";
+        return insuranceRepository.findAll();
     }
 
     @GetMapping("{id}")
-    public String getOne(@PathVariable("id") Insurance insurance, Model model) {
+    public Map<String, Object> getOne(@PathVariable("id") Insurance insurance) {
 
-        model.addAllAttributes(Utils.editData(Optional.ofNullable(insurance)));
-
-        return "main";
+        return Utils.editData(Optional.ofNullable(insurance));
     }
 
     @PostMapping
@@ -63,6 +57,23 @@ public class InsuranceController {
     public void deleteInsurance(@PathVariable("id") Insurance insurance) {
 
         insuranceRepository.delete(insurance) ;
+    }
+
+    /**
+     * Automatic fill database for testing
+     */
+    @GetMapping("auto")
+    public List<Insurance> auto() {
+
+        Insurance insurance = new Insurance("Peter Biely", Type.SHORT, LocalDate.now(),
+                LocalDate.now().plusMonths(2), Plan.EXTENDED, Person.THREE, 556);
+
+        insurance.setDateStamp(LocalDateTime.now());
+        insuranceRepository.save(insurance);
+
+        List<Insurance> insurances = (List<Insurance>) insuranceRepository.findAll();
+
+        return insurances;
     }
 
 }
