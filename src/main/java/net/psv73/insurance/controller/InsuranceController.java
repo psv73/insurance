@@ -1,6 +1,7 @@
 package net.psv73.insurance.controller;
 
-import net.psv73.insurance.model.*;
+import net.psv73.insurance.model.Insurance;
+import net.psv73.insurance.model.Rate;
 import net.psv73.insurance.repository.InsuranceRepository;
 import net.psv73.insurance.util.Utils;
 import org.springframework.beans.BeanUtils;
@@ -9,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
