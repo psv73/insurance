@@ -27,13 +27,13 @@ public class Rate {
 
     private float extraYear;
 
-    private float cancellationDay;
+    private float cancellationTravelDay;
 
-    private float cancellationYear;
+    private float cancellationTravelYear;
 
-    private float sportDay;
+    private float sportActiveDay;
 
-    private float sportYear;
+    private float sportActiveYear;
 
     private String name;
 

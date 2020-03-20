@@ -1,6 +1,7 @@
 package net.psv73.insurance.model;
 
 import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -33,6 +34,10 @@ public class Insurance {
 
     private Person person;
 
+    private boolean cancellationTravel;
+
+    private boolean sportActive;
+
     private float payment;
 
     public Insurance() {
@@ -48,4 +53,17 @@ public class Insurance {
         this.payment = payment;
     }
 
-  }
+    public Insurance(LocalDateTime dateStamp, String name, Type type, LocalDate start, LocalDate end, Plan plan,
+                     Person person, boolean cancellationTravel, boolean sportActive, float payment) {
+        this.dateStamp = dateStamp;
+        this.name = name;
+        this.type = type;
+        this.start = start;
+        this.end = end;
+        this.plan = plan;
+        this.person = person;
+        this.cancellationTravel = cancellationTravel;
+        this.sportActive = sportActive;
+        this.payment = payment;
+    }
+}
