@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("insurance")
+//@RequestMapping()
 public class InsuranceController {
 
     @Autowired

@@ -18,7 +18,7 @@ public class Insurance {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private LocalDateTime dateStamp;
 
