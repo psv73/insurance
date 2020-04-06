@@ -1,6 +1,6 @@
-package net.psv73.insurance.util;
+package com.psv73.insurance.util;
 
-import net.psv73.insurance.model.*;
+import com.psv73.insurance.model.*;
 
 import java.util.HashMap;
 import java.util.Map;

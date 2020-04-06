@@ -1,20 +1,18 @@
-package net.psv73.insurance.controller;
+package com.psv73.insurance.controller;
 
-import net.psv73.insurance.model.Insurance;
-import net.psv73.insurance.model.Rate;
-import net.psv73.insurance.repository.InsuranceRepository;
-import net.psv73.insurance.util.Utils;
+import com.psv73.insurance.model.Rate;
+import com.psv73.insurance.util.Utils;
+import com.psv73.insurance.model.Insurance;
+import com.psv73.insurance.repository.InsuranceRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Controller
-//@RequestMapping()
+//@Controller
 public class InsuranceController {
 
     @Autowired
@@ -28,7 +26,7 @@ public class InsuranceController {
 
         model.addAttribute("insurances", insuranceRepository.findAll());
 
-        return "main";
+        return "index";
     }
 
     @GetMapping("{id}")

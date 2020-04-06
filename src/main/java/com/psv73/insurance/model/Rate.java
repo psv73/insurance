@@ -1,4 +1,4 @@
-package net.psv73.insurance.model;
+package com.psv73.insurance.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

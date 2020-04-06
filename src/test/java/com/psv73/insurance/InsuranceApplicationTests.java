@@ -1,4 +1,4 @@
-package net.psv73.insurance;
+package com.psv73.insurance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

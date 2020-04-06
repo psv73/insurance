@@ -1,8 +1,8 @@
-package net.psv73.insurance.controller;
+package com.psv73.insurance.controller;
 
-import net.psv73.insurance.model.*;
-import net.psv73.insurance.repository.InsuranceRepository;
-import net.psv73.insurance.util.Utils;
+import com.psv73.insurance.model.*;
+import com.psv73.insurance.repository.InsuranceRepository;
+import com.psv73.insurance.util.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("REST")
+@RequestMapping("api")
 public class InsuranceRESTController {
 
     @Autowired

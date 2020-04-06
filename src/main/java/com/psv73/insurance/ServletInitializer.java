@@ -1,4 +1,4 @@
-package net.psv73.insurance;
+package com.psv73.insurance;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
