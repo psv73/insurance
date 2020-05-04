@@ -11,9 +11,8 @@ Vue.component('insurances-list', {
         '</div>',
     created: function () {
         axios.get('api').then(response => {
-                console.log(response)
-            }
-        )
+            this.insurances.push(response.data)
+        })
     }
 });
 
