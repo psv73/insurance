@@ -2,13 +2,14 @@ package com.psv73.insurance.util;
 
 import com.psv73.insurance.model.*;
 
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class Utils {
 
-    public static Map<String, Object> editData(Optional<Insurance> insurance) {
+    public static Map<String, Object> getInsurance(Optional<Insurance> insurance) {
 
         Map<String, Object> data = new HashMap<>();
 
@@ -52,11 +53,37 @@ public class Utils {
                 payment = payment * rate.getSportActiveYear();
             }
 
-            payment = payment * (insurance.getPerson().ordinal() + 1);
-
         } else {
 
+            long days = insurance.getStart().until(insurance.getEnd(), ChronoUnit.DAYS);
+
+            switch (insurance.getPlan()) {
+                case BASIC: {
+                    payment = payment + rate.getBasicDay() * days;
+                    break;
+                }
+                case EXTENDED: {
+                    payment = payment + rate.getExtendedDay() * days;
+                    break;
+                }
+                case EXTRA: {
+                    payment = payment + rate.getExtraDay() * days;
+                    break;
+                }
+            }
+
+            if (insurance.isCancellationTravel()) {
+                payment = payment * rate.getCancellationTravelDay();
+            }
+
+            if (insurance.isSportActive()) {
+                payment = payment * rate.getSportActiveDay();
+            }
+
         }
+
+        payment = payment * (insurance.getPerson().ordinal() + 1);
+
         return payment;
     }
 }

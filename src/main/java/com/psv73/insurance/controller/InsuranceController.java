@@ -32,7 +32,7 @@ public class InsuranceController {
     @GetMapping("{id}")
     public String getOne(@PathVariable("id") Insurance insurance, Model model) {
 
-        model.addAllAttributes(Utils.editData(Optional.ofNullable(insurance)));
+        model.addAllAttributes(Utils.getInsurance(Optional.ofNullable(insurance)));
 
         return "main";
     }

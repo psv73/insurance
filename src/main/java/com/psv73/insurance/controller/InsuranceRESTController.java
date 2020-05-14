@@ -32,7 +32,7 @@ public class InsuranceRESTController {
     @GetMapping("{id}")
     public Map<String, Object> getOne(@PathVariable("id") Insurance insurance) {
 
-        return Utils.editData(Optional.ofNullable(insurance));
+        return Utils.getInsurance(Optional.ofNullable(insurance));
     }
 
     @PostMapping

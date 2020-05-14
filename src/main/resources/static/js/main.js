@@ -1,7 +1,8 @@
 
+
 Vue.component('insurance-row', {
     props: ['insurance'],
-    template: '<div><i> ({{ insurance.id }})</i>  {{ insurance.text}} </div>'
+    template: '<div><i> ({{ insurance.id }})</i>  {{ insurance.name }} </div>'
 });
 
 Vue.component('insurances-list', {
@@ -11,7 +12,9 @@ Vue.component('insurances-list', {
         '</div>',
     created: function () {
         axios.get('api').then(response => {
-            this.insurances.push(response.data)
+            this.insurances = response.data;
+//                this.insurances.push(response);
+//            response.forEach(insurance => this.insurances.push(insurance));
         })
     }
 });
