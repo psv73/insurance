@@ -1,4 +1,23 @@
-
+Vue.component('insurance-form', {
+    props: ['insurance'],
+    data: function() {
+        return {
+            name: ''
+        }
+    },
+    template:
+        '<div>' +
+            '<input type="text" placeholder="Name" v-model="name"/>' +
+            '<input type="button" value="Save" @click="save" />' +
+        '</div>',
+    methods: {
+        save: function() {
+             var insurance = { name: this.name };
+             axios.post('api', insurance).then(result => this.insurance.push(result.data));
+             name='';
+        }
+    }
+});
 
 Vue.component('insurance-row', {
     props: ['insurance'],
@@ -7,14 +26,14 @@ Vue.component('insurance-row', {
 
 Vue.component('insurances-list', {
     props: ['insurances'],
-    template: '<div>' + '' +
+    template: '<div>' +
+        '<insurance-form :insurances="insurances" />' +
         '<insurance-row v-for = "insurance in insurances" :key = "insurance.id" :insurance = "insurance"/>' +
         '</div>',
     created: function () {
         axios.get('api').then(response => {
-            this.insurances = response.data;
-//                this.insurances.push(response);
-//            response.forEach(insurance => this.insurances.push(insurance));
+//                response.data.forEach(insurance => this.insurances.push(insurance));
+                response.data.forEach(insurance => this.insurances.push(insurance));
         })
     }
 });
