@@ -13,15 +13,31 @@ Vue.component('insurance-form', {
     methods: {
         save: function() {
              var insurance = { name: this.name };
-             axios.post('api', insurance).then(result => this.insurance.push(result.data));
-             name='';
+             axios.post('api', insurance).then((result) => {
+                 this.insurances.push(result.data);
+                 this.name = ''
+             });
         }
     }
 });
 
 Vue.component('insurance-row', {
     props: ['insurance'],
-    template: '<div><i> ({{ insurance.id }})</i>  {{ insurance.name }} </div>'
+    template: '<div>' +
+        '<i> ({{ insurance.id }})</i>  {{ insurance.name }} ' +
+        '<span>' +
+            '<input type="button" value="Edit" @click="edit" />' +
+            '<input type="button" value="X" @click="del" />' +
+        '</span>' +
+        '</div>',
+    methods: {
+        edit: function() {
+
+        },
+        del: function() {
+
+        }
+    }
 });
 
 Vue.component('insurances-list', {
@@ -32,7 +48,6 @@ Vue.component('insurances-list', {
         '</div>',
     created: function () {
         axios.get('api').then(response => {
-//                response.data.forEach(insurance => this.insurances.push(insurance));
                 response.data.forEach(insurance => this.insurances.push(insurance));
         })
     }
