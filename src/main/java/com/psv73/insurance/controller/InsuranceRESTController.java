@@ -38,7 +38,7 @@ public class InsuranceRESTController {
     @PostMapping
     public Insurance createInsurance(@RequestBody Insurance insurance) {
 
-        insurance.setDateStamp(LocalDateTime.now());
+        insurance.setCreationDate(LocalDateTime.now());
         insuranceRepository.save(insurance);
 
         return insurance;
@@ -47,7 +47,6 @@ public class InsuranceRESTController {
     @PutMapping("{id}")
     public Insurance updateInsurance(@PathVariable("id") Insurance insuranceFromDB, @RequestBody Insurance insurance) {
 
-        insurance.setDateStamp(LocalDateTime.now());
         BeanUtils.copyProperties(insurance, insuranceFromDB, "id");
 
         return insuranceRepository.save(insuranceFromDB);
@@ -68,7 +67,7 @@ public class InsuranceRESTController {
         Insurance insurance = new Insurance("Peter Biely", Type.SHORT, LocalDate.now(),
                 LocalDate.now().plusMonths(2), Plan.EXTENDED, Person.THREE, 556);
 
-        insurance.setDateStamp(LocalDateTime.now());
+        insurance.setCreationDate(LocalDateTime.now());
         insuranceRepository.save(insurance);
 
         List<Insurance> insurances = (List<Insurance>) insuranceRepository.findAll();

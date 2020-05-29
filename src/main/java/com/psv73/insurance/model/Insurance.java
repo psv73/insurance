@@ -19,7 +19,8 @@ public class Insurance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dateStamp;
+    @Column(updatable = false)
+    private LocalDateTime creationDate;
 
     private String name;
 
@@ -52,9 +53,9 @@ public class Insurance {
         this.payment = payment;
     }
 
-    public Insurance(LocalDateTime dateStamp, String name, Type type, LocalDate start, LocalDate end, Plan plan,
+    public Insurance(LocalDateTime creationDate, String name, Type type, LocalDate start, LocalDate end, Plan plan,
                      Person person, boolean cancellationTravel, boolean sportActive, float payment) {
-        this.dateStamp = dateStamp;
+        this.creationDate = creationDate;
         this.name = name;
         this.type = type;
         this.start = start;
