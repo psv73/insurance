@@ -40,7 +40,7 @@ public class InsuranceController {
     @PostMapping
     public Insurance createInsurance(@RequestBody Insurance insurance) {
 
-        insurance.setDateStamp(LocalDateTime.now());
+        insurance.setCreationDate(LocalDateTime.now());
         insuranceRepository.save(insurance);
 
         return insurance;
@@ -49,7 +49,7 @@ public class InsuranceController {
     @PutMapping("{id}")
     public Insurance updateInsurance(@PathVariable("id") Insurance insuranceFromDB, @RequestBody Insurance insurance) {
 
-        insurance.setDateStamp(LocalDateTime.now());
+        insurance.setCreationDate(LocalDateTime.now());
         BeanUtils.copyProperties(insurance, insuranceFromDB, "id");
 
         return insuranceRepository.save(insuranceFromDB);
